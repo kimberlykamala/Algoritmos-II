@@ -1,0 +1,113 @@
+
+#include <iostream>
+#include "string.h"
+using namespace std;
+
+const int n=10, m=10;
+
+class Matrices
+{
+private:
+
+	float matriz[n][m];
+	int tamaño_fila;
+	int tamaño_columna;
+
+public:
+
+	float Matriz(int f,int c);
+	void Matriz(int f, int c, float valor);
+	int Tamaño_fila();
+	int Tamaño_columna();
+	void Tamaño_fila(int f);
+	void Tamaño_columna(int c);
+	Matrices Sumar(Matrices A, Matrices B);
+	Matrices Restar(Matrices A, Matrices B);
+	Matrices Multiplicar(Matrices A, Matrices B);
+	Matrices Multiplicar_escalar(Matrices A, float escalar);
+	Matrices Transpuesta(Matrices A);
+	Matrices Ordenar(Matrices A);
+	void Guardar_matrices_a_objetos( float Mat[n][m], int tf, int tc );
+	void Devolver_matrices_a_objetos( float Mat[n][m], int &tf, int &tc );
+};
+
+	float Matrices::Matriz( int f,int c )
+	{
+		return matriz[f][c];
+	}
+	void Matrices::Matriz( int f, int c, float valor )
+	{
+		matriz[f][c]=valor;
+	}
+	int Matrices::Tamaño_fila()
+	{
+		return tamaño_fila;
+	}
+	int Matrices::Tamaño_columna()
+	{
+		return tamaño_columna;
+	}
+	void Matrices::Tamaño_fila( int f )
+	{
+		tamaño_fila=f;
+	}
+	void Matrices::Tamaño_columna( int c )
+	{
+		tamaño_columna=c;
+	}
+
+Matrices Matrices::Sumar( Matrices A, Matrices B )
+{
+	int i,j;
+	Matrices C;
+	i=0;
+	while(i<A.tamaño_columna)
+	{
+		j=0;
+		while(j<A.tamaño_columna)
+		{
+			C.Matriz(i,j, (A.Matriz(i,j)+B.Matriz(i,j)) );
+			j++;
+		}
+		i++;
+	}
+	C.Tamaño_fila(i);
+	C.Tamaño_columna(j);
+	return C;
+}
+void Matrices::Guardar_matrices_a_objetos( float Mat[n][m], int tf, int tc )
+{
+	int i,j;
+	i=0;
+	while(i<tf)
+	{
+		j=0;
+		while(j<tc)
+		{
+			Matriz(i,j, Mat[i][j]);
+			j++;
+		}
+		i++;
+	}
+	Tamaño_fila(tf);
+	Tamaño_columna(tc);
+
+}
+void Matrices::Devolver_matrices_a_objetos( float Mat[n][m], int &tf, int &tc )
+{
+	int i,j;
+	i=0;
+	while(i<Tamaño_fila())
+	{
+		j=0;
+		while(j<Tamaño_columna())
+		{
+			Mat[i][j]= Matriz(i,j);
+			j++;
+		}
+		i++;
+	}
+	tf=Tamaño_fila();
+	tc= Tamaño_columna();
+
+}
