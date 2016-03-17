@@ -1,0 +1,68 @@
+
+#include <iostream>
+#include <string.h>
+#include "conio.h"
+
+
+using namespace std;
+
+const int N=10, M=10;
+
+class Interfaz
+{
+public:
+	void Leer( float Ma[N][M], int &fila, int &columna );
+	void Escribir( float Ma[N][M], int fila, int columna );
+	int Menu();
+};
+
+int Interfaz::Menu()
+{	system("cls");
+	int opcion;
+	cout<<"1. Sumar"<<endl;
+	cout<<"2. Restar"<<endl;
+	cout<<"3. Multiplicar"<<endl;
+	cout<<"4. Multiplicar por escalar"<<endl;
+	cout<<"5. Transpuesta"<<endl;
+	cout<<"6. Inversa"<<endl;
+	cout<<"7. Ordenar"<<endl;
+	cout<<"8.Ingrese una opcion"<<endl;
+	cin>>opcion;
+	return opcion;
+}
+
+void Interfaz::Leer( float Ma[N][M], int &fila, int &columna )
+{
+	int i,j;
+	cout<<"Tamaño de fila: ";
+	cin>>fila;
+	cout<<"Tamaño de columna: ";
+	cin>> columna;
+	i=0;
+	while(i<fila)
+	{
+		j=0;
+		while(j<columna)
+		{
+			cout<<"Matriz ["<<i<<"]["<<j<<"]: ";
+			cin>>Ma[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+void Interfaz::Escribir( float Ma[N][M], int fila, int columna )
+{
+	int i=0,j;
+	while(i<fila)
+	{
+		j=0;
+		while(j<columna)
+		{
+			cout<<"Matriz ["<<i<<"]["<<j<<"]: ";
+			cout<< Ma[i][j]<<endl;
+			j++;
+		}
+		i++;
+	}
+}
