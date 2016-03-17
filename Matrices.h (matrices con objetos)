@@ -111,3 +111,63 @@ void Matrices::Devolver_matrices_a_objetos( float Mat[n][m], int &tf, int &tc )
 	tc= Tamaño_columna();
 
 }
+Matrices Matrices::Restar( Matrices A, Matrices B )
+{
+	int i,j;
+	Matrices C;
+	i=0;
+	while(i<A.tamaño_columna)
+	{
+		j=0;
+		while(j<A.tamaño_columna)
+		{
+			C.Matriz(i,j, (A.Matriz(i,j)-B.Matriz(i,j)) );
+			j++;
+		}
+		i++;
+	}
+	C.Tamaño_fila(i);
+	C.Tamaño_columna(j);
+	return C;
+}
+Matrices Matrices::Multiplicar (Matrices A, Matrices B)
+{
+	int i,j,k;
+	Matrices C;
+	Matrices aux;
+	i=0;
+	while(i<A.tamaño_fila())
+	{
+		j=0;
+		while(j<B.tamaño_columna())
+		{
+			C.Matriz(i,j,0);
+			j++;
+		}
+		i++;
+		
+	}
+	C.tamaño_fila(2);
+	C.tamaño_columna(2);
+
+	i=0;
+	while(j<A.tamaño_fila())
+	{
+		j=0;
+		while(j<A.tamaño_columna())
+		{
+			k=0;
+			while(k<B.tamaño_columna())
+			{
+				aux.Matriz(i,k, (A.Matriz(i,j)*B.Matriz(j,k)));
+				k++;
+			}
+			j++;
+		}
+		C=C.Sumar(C,aux);
+		i++;
+	}
+	C.tamaño_fila(A.tamaño_fila());
+	C.tamaño_columna(B.tamaño_columna());
+	return C;
+}
