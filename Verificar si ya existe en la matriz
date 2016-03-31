@@ -1,0 +1,90 @@
+// verificar si ya existe en la matriz.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+#include <stdio.h>
+#define N 10
+using namespace std;
+void cargar(string mat[N][N], int fila,int columna)
+{
+	cout<<"Ingrese la palabra: ";
+	cout<<endl;
+	int i=0;
+	while(i<fila)
+	{
+		int j=0;
+		while(j<columna)
+		{
+			cin>>mat[i][j];
+			j++;
+		}
+	i++;
+	}
+}
+
+void mostrar(string mat[N][N], int fila,int columna)
+{
+	cout<<"la matriz es: ";
+	cout<<endl;
+	int i=0;
+	while(i<fila)
+	{
+		int j=0;
+		while(j<columna)
+		{
+			cout<<mat[i][j]<<endl;
+			j++;
+		}
+	i++;
+	}
+}
+
+void verifSiExiste(string mat[N][N],int fila, int columna)
+{
+	int i,j,k,l,c=0;
+	i=0;
+	while(i<fila)
+	{
+		j=0;
+		while(j<columna)
+		{
+			l=0;
+			while(l<fila)
+			{
+				k=0;
+				while(k<columna)
+				{
+					if(strcmp( mat[i][j], mat[k][l])==0)
+						{	
+							
+							c++;
+							k++;
+						}
+					else
+
+						k++;
+				}
+				l++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if(c>0)
+		cout<<endl<< "se repite: "<<c-1<<" veces";
+	else cout<<endl<<"no se repite";
+	
+}
+void main()
+{
+	string mat[N][N];
+	int fila=2,columna=2;
+	cargar(mat,fila,columna);
+	mostrar(mat,fila,columna);
+	verifSiExiste(mat,fila,columna);
+	
+	getch();
+}
