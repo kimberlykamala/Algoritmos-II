@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "string.h"
 using namespace std;
@@ -136,10 +135,10 @@ Matrices Matrices::Multiplicar (Matrices A, Matrices B)
 	Matrices C;
 	Matrices aux;
 	i=0;
-	while(i<A.tamaño_fila())
+	while(i<A.tamaño_fila)
 	{
 		j=0;
-		while(j<B.tamaño_columna())
+		while(j<B.tamaño_columna)
 		{
 			C.Matriz(i,j,0);
 			j++;
@@ -147,17 +146,17 @@ Matrices Matrices::Multiplicar (Matrices A, Matrices B)
 		i++;
 		
 	}
-	C.tamaño_fila(2);
-	C.tamaño_columna(2);
+	C.tamaño_fila=0;
+	C.tamaño_columna=0;
 
 	i=0;
-	while(j<A.tamaño_fila())
+	while(i<A.tamaño_fila)
 	{
 		j=0;
-		while(j<A.tamaño_columna())
+		while(j<A.tamaño_columna)
 		{
 			k=0;
-			while(k<B.tamaño_columna())
+			while(k<B.tamaño_columna)
 			{
 				aux.Matriz(i,k, (A.Matriz(i,j)*B.Matriz(j,k)));
 				k++;
@@ -167,7 +166,7 @@ Matrices Matrices::Multiplicar (Matrices A, Matrices B)
 		C=C.Sumar(C,aux);
 		i++;
 	}
-	C.tamaño_fila(A.tamaño_fila());
-	C.tamaño_columna(B.tamaño_columna());
+	C.tamaño_fila=A.tamaño_fila;
+	C.tamaño_columna=B.tamaño_columna;
 	return C;
 }
